@@ -4,11 +4,7 @@ In Python, developers are able to annotate their functions. For example: def f(x
 </br></br>The <b>__call__</b> method intercepts calls to the decorated function;
   it specifies <b>*args</b> and <b>**kargs</b> to handle all calls,
   regardless of their parameter structure.
-My method was about 40 lines (but about 17 lines were comments/blank, and
-  7 comprise the <b>param_arg_binding</b> local function supplied in the
-  download; this function computes an <b>ordereddict</b> of the parameter
-  names (each associated to its argument) in the order that the parameters
-  are defined in the function.
+
 The <b>__call__</b> method
 <ul>
 <li>determines whether to check the annotations (see above); if not just
