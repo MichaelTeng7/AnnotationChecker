@@ -133,7 +133,8 @@ class Check_Annotation():
         #   lambda/functions, and str (str for extra credit)
         # Many of these local functions called by check, call check on their
         #   elements (thus are indirectly recursive)
-        
+
+        # Check list/tuple
         def check_list_tup(t):
             assert isinstance(value,t), repr(param)+" failed annotation check(wrong type): value = "+repr(value)+\
             "\n  was type "+type_as_str(value)+" ...should be type "+str(t)+"\n"+check_history
@@ -146,7 +147,8 @@ class Check_Annotation():
                 "\n  annotation had "+str(len(annot))+" elements"+str(annot)+"\n"+check_history
                 for a,v in zip(annot,value):
                     self.check(param, a, v, check_history+type_as_str(value)+"["+str(value.index(v))+"] check: "+str(annot.index(a))+"\n")
-        
+
+        # Check dict
         def check_dict():
             assert isinstance(value,dict), repr(param)+" failed annotation check(wrong type): value = "+repr(value)+\
             "\n  was type "+type_as_str(value)+" ...should be type dict\n"+check_history
@@ -155,7 +157,8 @@ class Check_Annotation():
             for k,v in value.items():
                 self.check(param, list(annot.keys())[0], k, check_history+"dict key check: "+str(list(annot.keys())[0])+"\n")
                 self.check(param, list(annot.values())[0], v, check_history+"dict value check: "+str(list(annot.values())[0])+"\n")
-        
+
+        # Check set/frozenset
         def check_set_fset(t):
             assert isinstance(value,t), repr(param)+" failed annotation check(wrong type): value = "+repr(value)+\
             "\n  was type "+type_as_str(value)+" ...should be type "+str(t)+"\n"+check_history
@@ -163,7 +166,8 @@ class Check_Annotation():
             "\n  annotation = "+str(annot)
             for v in value:
                 self.check(param, type(v), v, check_history+str(t)+" value check: "+str(annot))
-                
+
+        # Check function/lambda              
         def check_func():
             assert len(annot.__code__.co_varnames) == 1, repr(param)+" annotation inconsistency: predicate should have 1 parameter but had "+str(len(annot.__code__.co_varnames))+\
             "\n predicate = "+str(annot)+"\n"+check_history
@@ -175,7 +179,8 @@ class Check_Annotation():
             else:
                 assert annot(value), repr(param)+" failed annotation check: value = "+repr(value)+\
                 "\n  predicate = "+str(annot)+"\n"+check_history
-              
+
+        # Check string             
         def check_str():
             try:
                 eval(annot,dict(self._d))
