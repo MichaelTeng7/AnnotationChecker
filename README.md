@@ -7,7 +7,7 @@ In Python, developers are able to annotate their functions. For example: def f(x
 
 The <b>__call__</b> method
 <ul>
-<li>determines whether to check the annotations (see above); if not just
+<li>determines whether to check the annotations; if not just
        call the decorated function and return its result.
 <p>
 <li>determines the parameters of the function and the matching arguments
@@ -17,9 +17,6 @@ The <b>__call__</b> method
        that when iterated, keys always appear in the same order: the order the
        parameters appear in in the function's definition.
     It uses the various attributes in the <b>inspect</b> module to do the job.
-    You might be interested in reading the documentation for the <b>inspect</b>
-      module: it is quite interesting and many of its (powerful) features are
-      new to Python.
 <p>
 <li>determines the annotations of the parameters by using the
       <b>__annotations__</b> attribute of any function object.
@@ -31,7 +28,7 @@ The <b>__call__</b> method
       dictionary is
 <b><pre>
 {'x': &lt;class 'int'&gt;, 'z': &lt;class 'int'&gt;, 'return': &lt;class 'str'&gt;>}</pre></b>
-Notice that parameter <b>y</b> has no annotation so it does not appear as a key
+Parameter <b>y</b> has no annotation so it does not appear as a key
   in this dictionary, and the key <b>return</b> is associated with the
   annotation for the returned value (after the <b>-&gt;</b>).
 <p>
